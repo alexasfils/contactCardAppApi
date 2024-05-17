@@ -63,6 +63,8 @@ public class ContactResource {
 
 		service.rimuoviContattoPerId(id);
 		return  ResponseEntity.noContent().build();
+		
+		
 	}
 
 	
