@@ -13,14 +13,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import static org.springframework.http.MediaType.*;
 
+
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.getarrays.contanctapi.domain.Contact;
 import io.getarrays.contanctapi.service.ContactService;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -56,17 +63,14 @@ public class ContactResource {
 	public byte[] getPhoto(@PathVariable("filename") String filename) throws IOException, SerialException, SQLException {
 	    return Files.readAllBytes(Paths.get(PHOTO_DIRECTORY + filename));
 	}
+
 	
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> rimuoviContatto(@PathVariable(value = "id") String id) {
 
 		service.rimuoviContattoPerId(id);
-		return  ResponseEntity.noContent().build();
-		
-		
-	}
-
+		return  ResponseEntity.noContent().build();}
 	
 
 }
